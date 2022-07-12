@@ -1,6 +1,7 @@
-package pages;
+package pages.forms;
 
 import com.codeborne.selenide.*;
+import config.AppConfig;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -8,7 +9,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class MainPage {
+public class FormPage {
     private final SelenideElement firstnameField = $(By.id("firstName"));
     private final SelenideElement lastNameField = $(By.id("lastName"));
     private final SelenideElement emailField = $(By.id("userEmail"));
@@ -19,10 +20,11 @@ public class MainPage {
     private final SelenideElement dateOfBirthField = $(By.id("dateOfBirthInput"));
     private final SelenideElement uploadPictureButton = $(By.id("uploadPicture"));
     private final SelenideElement currentAddressField = $(By.id("currentAddress"));
-    private final String URL = "https://demoqa.com/automation-practice-form";
+    private final String END_POINT = "/automation-practice-form";
 
-    public MainPage open(){
-        Selenide.open(URL);
+    public FormPage open(){
+        Selenide.open(AppConfig.baseUrl+END_POINT);
+        Assert.assertTrue(pageIsOpened());
 
         return this;
     }
@@ -31,53 +33,60 @@ public class MainPage {
         return firstnameField.isDisplayed();
     }
 
-    public void inputFirstName(String firstname){
+    public FormPage inputFirstName(String firstname){
         firstnameField.click();
         firstnameField.setValue(firstname);
 
         Assert.assertEquals(firstname, firstnameField.getValue());
+
+         return this;
     }
 
-    public void inputLastName(String lastname){
+    public FormPage inputLastName(String lastname){
         lastNameField.click();
         lastNameField.setValue(lastname);
 
         Assert.assertEquals(lastname, lastNameField.getValue());
+
+        return this;
     }
 
-    public void inputEmail(String email){
+    public FormPage inputEmail(String email){
         emailField.click();
         emailField.setValue(email);
 
         Assert.assertEquals(email,emailField.getValue());
+
+        return this;
     }
 
-    public void inputCurrentAddress(String address){
+    public FormPage inputCurrentAddress(String address){
         currentAddressField.click(ClickOptions.usingJavaScript());
         currentAddressField.setValue(address);
 
         Assert.assertEquals(address,currentAddressField.getValue());
+
+        return this;
     }
 
-    public void selectMailCheckBox(){
+    public FormPage selectMailCheckBox(){
         maleCheckbox.click(ClickOptions.usingJavaScript());
 
         maleCheckbox.shouldBe(Condition.checked);
+
+        return this;
     }
 
-    public void inputPhoneNumber(String number){
+    public FormPage inputPhoneNumber(String number){
         phoneField.click();
         phoneField.setValue(number);
 
         Assert.assertEquals(number,phoneField.getValue());
+
+        return this;
     }
 
-    public void inputSubject(String subjects){
-        subjectsField.sendKeys(subjects);
-        Assert.assertEquals(subjects,subjectsField.getValue());
-    }
-
-    public void inputDateOfBirth(String date){
+    public FormPage inputDateOfBirth(String date){
         dateOfBirthField.click();
 
         dateOfBirthField.sendKeys(Keys.CONTROL + "A");
@@ -85,17 +94,23 @@ public class MainPage {
         dateOfBirthField.sendKeys(Keys.ENTER);
 
         Assert.assertEquals(date,dateOfBirthField.getValue());
+
+        return this;
     }
 
-    public void selectSportCheckBox(){
+    public FormPage selectSportCheckBox(){
         sportCheckBox.click(ClickOptions.usingJavaScript());
 
         sportCheckBox.shouldBe(Condition.checked);
+
+        return this;
     }
 
-    public void uploadFile(String filePath){
+    public FormPage uploadFile(String filePath){
         File file = new File(filePath);
         uploadPictureButton.uploadFile(file);
+
+        return this;
     }
 
 }

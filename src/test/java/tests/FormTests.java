@@ -1,26 +1,28 @@
 package tests;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import steps.MainSteps;
+import pages.forms.FormPage;
 
-public class TestsWithForm extends BaseTest {
-    private MainSteps mainSteps;
+public class FormTests {
+    private static FormPage formPage;
 
-    @Before
-    public void Before(){
-        mainSteps = new MainSteps();
+    @BeforeClass
+    public static void Before(){
+        formPage = new FormPage();
     }
 
     @Test
     public void fillingOutTheFormTest(){
-        mainSteps.openMainPage()
-                .inputFirstAndLastName("Danii","Borisevich")
+
+        formPage
+                .open()
+                .inputFirstName("Daniil")
+                .inputLastName("Borisevich")
                 .inputEmail("borisevich.daniel@gmail.com")
-                .selectMaleCheckBox()
+                .selectMailCheckBox()
                 .inputPhoneNumber("1234567890")
                 .inputDateOfBirth("15 Mar 2002")
-                //.inputAndSelectSubject("Computer",1);
                 .selectSportCheckBox()
                 .uploadFile("src/test/java/resources/me.jpg")
                 .inputCurrentAddress("Minsk");
