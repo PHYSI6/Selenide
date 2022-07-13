@@ -9,7 +9,6 @@ import java.io.IOException;
 
 
 public class ElementsTests extends BaseTest {
-
     private static CheckboxPage checkboxPage;
     private static RadioButtonPage radioButtonPage;
     private static WebTablesPage webTablesPage;

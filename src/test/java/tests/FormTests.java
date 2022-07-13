@@ -4,7 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pages.forms.FormPage;
 
-public class FormTests {
+public class FormTests extends BaseTest {
     private static FormPage formPage;
 
     @BeforeClass

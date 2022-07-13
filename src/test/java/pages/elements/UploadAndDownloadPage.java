@@ -8,9 +8,9 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static com.codeborne.selenide.FileDownloadMode.PROXY;
 import static com.codeborne.selenide.Selenide.$;
 
 
@@ -31,6 +31,9 @@ public class UploadAndDownloadPage {
     }
 
     public UploadAndDownloadPage downloadFile() throws IOException {
+        Configuration.downloadsFolder = "D:/OKAY QA/src/test/java/resources/files/";
+        Configuration.proxyEnabled = true;
+        Configuration.fileDownload = PROXY;
         File file = downloadButton.download();
         Assert.assertTrue(file.exists());
 
