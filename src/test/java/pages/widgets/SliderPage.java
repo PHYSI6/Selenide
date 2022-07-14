@@ -30,13 +30,8 @@ public class SliderPage {
         int currentValue = Integer.parseInt(slider.getAttribute("value"));
         int countOfSteps = Math.abs(value - currentValue);
         for(int i = 0; i < countOfSteps; i++){
-            if(value>currentValue) {
-                slider.sendKeys(Keys.ARROW_RIGHT);
-            } else{
-                slider.sendKeys(Keys.ARROW_LEFT);
-            }
+            slider.sendKeys(value > currentValue ? Keys.ARROW_RIGHT : Keys.ARROW_LEFT);
         }
-
         Assert.assertEquals(value, Integer.parseInt(slider.getAttribute("value")));
 
         return this;
